@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>972</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Gilroy</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Система автоматизации противников</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="enemy_add_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>20</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Добавить</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="initiativeTracker">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>20</y>
+      <width>851</width>
+      <height>561</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Gilroy</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="dragEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="dragDropMode">
+     <enum>QAbstractItemView::DragDropMode::DragDrop</enum>
+    </property>
+    <property name="defaultDropAction">
+     <enum>Qt::DropAction::MoveAction</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clear_tracker_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>50</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Очистить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="delete_enemy_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>80</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Удалить</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shoot_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>180</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Выстрел</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="grenade_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>210</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Граната</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="inventory_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>270</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Инвентарь</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="get_damage_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>330</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Получить
+урон</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="next_turn_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>410</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Следующий
+ход</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="reload_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>240</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Перезарядка</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
