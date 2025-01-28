@@ -21,8 +21,8 @@
   <widget class="QPushButton" name="ok_btn">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>122</y>
+     <x>60</x>
+     <y>120</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -40,8 +40,8 @@
   <widget class="QPushButton" name="cancel_btn">
    <property name="geometry">
     <rect>
-     <x>210</x>
-     <y>122</y>
+     <x>160</x>
+     <y>120</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -65,7 +65,7 @@
      <height>22</height>
     </rect>
    </property>
-   <property name="placeholderText">
+   <property name="placeholderText" stdset="0">
     <string>Выберите группировку</string>
    </property>
   </widget>
@@ -97,7 +97,7 @@
      <height>22</height>
     </rect>
    </property>
-   <property name="placeholderText">
+   <property name="placeholderText" stdset="0">
     <string>Выберите сложность</string>
    </property>
   </widget>
@@ -129,7 +129,7 @@
      <height>22</height>
     </rect>
    </property>
-   <property name="placeholderText">
+   <property name="placeholderText" stdset="0">
     <string>Выберите богатство</string>
    </property>
   </widget>
@@ -150,6 +150,25 @@
    </property>
    <property name="text">
     <string>Богатство:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="random_btn">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>120</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Gilroy</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Случайно</string>
    </property>
   </widget>
  </widget>

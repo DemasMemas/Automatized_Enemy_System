@@ -23,10 +23,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>20</y>
+      <y>40</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Добавить</string>
@@ -51,20 +58,27 @@
      <bool>true</bool>
     </property>
     <property name="dragDropMode">
-     <enum>QAbstractItemView::DragDropMode::DragDrop</enum>
+     <enum>QAbstractItemView::NoDragDrop</enum>
     </property>
     <property name="defaultDropAction">
-     <enum>Qt::DropAction::MoveAction</enum>
+     <enum>Qt::IgnoreAction</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="clear_tracker_btn">
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>50</y>
+      <y>70</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Очистить</string>
@@ -74,10 +88,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>80</y>
+      <y>100</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Удалить</string>
@@ -87,10 +108,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>180</y>
+      <y>200</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Выстрел</string>
@@ -100,10 +128,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>210</y>
+      <y>230</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Граната</string>
@@ -113,10 +148,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>270</y>
+      <y>290</y>
       <width>81</width>
       <height>24</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Инвентарь</string>
@@ -126,10 +168,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>330</y>
+      <y>350</y>
       <width>81</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Получить
@@ -140,10 +189,17 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>410</y>
+      <y>430</y>
       <width>81</width>
       <height>51</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Следующий
@@ -154,13 +210,82 @@
     <property name="geometry">
      <rect>
       <x>14</x>
-      <y>240</y>
+      <y>260</y>
       <width>81</width>
       <height>24</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Перезарядка</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="initiative_sort_btn">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>495</y>
+      <width>81</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Сортировка
+по
+инициативе</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="enemy_add_rand_1">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>130</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>1 враг</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="enemy_add_rand_3">
+    <property name="geometry">
+     <rect>
+      <x>14</x>
+      <y>160</y>
+      <width>81</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Times New Roman</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>3 врага</string>
     </property>
    </widget>
   </widget>

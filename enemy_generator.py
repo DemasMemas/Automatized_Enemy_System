@@ -213,6 +213,15 @@ weaponsTierS = ['АГ-56', 'АШФ-3000', 'АШШ-12', 'Болтовая Вин�
                 'Пулемет Душман-У', 'ПМП Турок', 'Пулемет Герцог 12Б3', 'Гранатомет Дьявол Бесшумный', 'АСБ-15у',
                 'Автоматический Дробовик Отбойник Пуля']
 
+# Гранаты
+grenadeTier1 = [["Ничего", 0], ["Ничего", 0], ["Муляж", 1], ["РГД-5", 1], ["РДГ-6", 1], ["Заря", 1]]
+grenadeTier1Plus = [["РГД-5", 2], ["РДГ-6", 2], ["Заря", 2]]
+grenadeTier2 = [["Ничего", 0], ["Ф-1", 1], ["РГН", 1], ["Дымовая граната Screen", 1], ["Светошумовая граната Факел", 1], ["Светошумовая граната Flash-M2", 1], ["Граната Bang-79-3", 1], ["Химическая граната Refresher", 1]]
+grenadeTier2Plus = [["Ф-1", 2], ["РГН", 2], ["Дымовая граната Screen", 2], ["Светошумовая граната Факел", 2], ["Светошумовая граната Flash-M2", 2], ["Граната Bang-79-3", 2], ["Химическая граната Refresher", 2]]
+grenadeTier3 = [["Ф-1", 3], ["РГН", 3], ["Дымовая граната Screen", 3], ["Светошумовая граната Факел", 3], ["Светошумовая граната Flash-M2", 3], ["Граната Bang-79-3", 3], ["Химическая граната Refresher", 3]]
+grenadeTier3Plus = [["Зажигательная граната Napalm-AN", 1], ["Химическая граната Черемуха", 1], ["Термобарическая граната РГ-60ТБ", 1]]
+grenadeTierS = [["Зажигательная граната Napalm-AN", 2], ["Химическая граната Черемуха", 2], ["Термобарическая граната РГ-60ТБ", 2]]
+
 # Броня: Название, прочность, материал, физическая защита, химическая защита, термическая защита, электрическая защита, защита от радиации, штраф к перемещению, стадия целостности, хп стадии
 fullArmorDict = {
     "Без брони": ["Без брони", 10000, "Текстиль", "0%", "0%", "0%", "0%", "0%", 0, "Целая", 50000],
@@ -273,7 +282,7 @@ fullArmorDict = {
 armorTier1 = ["Без брони", "Кожаная куртка", "Бандитская куртка", "Костюм Химзащиты"]
 armorTier1Plus = ["Броня путника", "Кожаная куртка ФИЗ", "Кожаная куртка АНОМ", "Бандитская куртка ФИЗ",
                   "Костюм Химзащиты АНОМ", "Костюм Химзащиты Капельница", "Костюм Химзащиты РАД",
-                  "Броня путника ФИЗ/Облегчение", "Бандитская куртка ПРЕСТИЖ"]
+                  "Броня путника ФИЗ/Облегчение1", "Бандитская куртка ПРЕСТИЖ"]
 armorTier2 = ["Бронекостюм", "Комбинезон Купол", "Комбинезон Сокол", "Комбинезон налетчика", "Бронекостюм Затвор"]
 armorTier2Plus = ["Бронекостюм Облегчение2 + Физ1", "Бронекостюм ФИЗ", "Бронекостюм РАД", "Комбинезон Купол Аном2",
                   "Комбинезон Купол ФИЗ", "Бронекостюм Затвор АНОМ", "Бронекостюм Затвор Гора1 + Защитник1 + Аном1",
@@ -360,7 +369,7 @@ helmetTier1 = ["Без шлема", "Панамка", "Кепка", "Шапка 
 helmetTier1Plus = ["Балаклава Призрак", "Ушанка", "Ушанка Пафос1", "Противогаз ГП-7", "Противогаз ГП-9В",
                    "Противогаз ГП-5", "Противогаз ПМГ-2", "Респиратор Точность", "Советский Котелок 68Г ФИЗ",
                    "Шлем КыСа-2", "Противогаз Ж-12 Мобильность"]
-helmetTier2 = ["Шлем Витязь 4В76", "Шлем Ударник", "Шлем Гусар", "Противогаз ГП-5 Точность", "Противогаз ГП-7 Точность"
+helmetTier2 = ["Шлем Витязь 4В76", "Шлем Ударник", "Шлем Гусар", "Противогаз ГП-5 Точность", "Противогаз ГП-7 Точность",
                "Противогаз ГП-9В Точность", "Противогаз ГП-9В Мобильность", "Противогаз ПМГ-2 Мобильность", "Шлем Блокпост"]
 helmetTier2Plus = ["Шлем Ударник-М", "Шлем ШЗ-13м", "Шлем Блокпост ЭРГО", "Шлем Блокпост Физ2"]
 helmetTier3 = ["Шлем Карбованец", "Шлем Ударник-М ФИЗ", "Шлем Первопроходец", "Шлем Воевода"]
@@ -398,6 +407,9 @@ def generate_name():
 
 class EnemyGenerator:
     def __init__(self):
+        self.fullWeaponDict = fullWeaponDict
+        self.fullArmorDict = fullArmorDict
+        self.fullHelmetDict = fullHelmetDict
         self.enemy_generate_info = None
         self.last_id = 0
 
@@ -410,8 +422,216 @@ class EnemyGenerator:
         new_enemy.weapon = self.generate_weapon()
         new_enemy.armor = [self.generate_armor(), "Целая"]
         new_enemy.helmet = [self.generate_helmet(new_enemy), "Целая"]
+        new_enemy.skills = self.generate_skills()
+        new_enemy.grenade = self.generate_grenades()
+        new_enemy.mobility_debuff = self.generate_mobility_debuff(new_enemy)
+        new_enemy.initiative = self.generate_initiative(new_enemy)
+        new_enemy.enemy_loot = self.generate_enemy_loot()
+        self.generate_durability(new_enemy)
 
         return new_enemy
+
+    def generate_durability(self, enemy):
+        # Броня
+        # 1. Противник новичок
+        if self.enemy_generate_info[1] == "1. Противник новичок":
+            if self.enemy_generate_info[2] in ["3. В достатке", "4. Богат"]:
+                if self.enemy_generate_info[2] != "4. Богат":
+                    enemy.armor[1] = "Немного повреждена"
+                    enemy.helmet[1] = "Немного повреждена"
+            else:
+                enemy.armor[1] = "Повреждена"
+                enemy.helmet[1] = "Повреждена"
+        # 2. Противник опытный/ветеран
+        elif self.enemy_generate_info[1] in ["2. Противник опытный", "3. Противник ветеран"]:
+            if self.enemy_generate_info[2] in ["3. В достатке", "4. Богат"]:
+                pass
+            else:
+                enemy.armor[1] = "Немного повреждена"
+                enemy.helmet[1] = "Немного повреждена"
+
+        # Оружие
+        # 1. Противник новичок
+        if self.enemy_generate_info[1] == "1. Противник новичок":
+            if self.enemy_generate_info[2] == "4. Богат":
+                max_durability = random.randint(95, 100)
+                enemy.weapon[2] = max_durability - 2
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "3. В достатке":
+                max_durability = random.randint(85, 95)
+                enemy.weapon[2] = max_durability - 3
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                max_durability = random.randint(65, 85)
+                enemy.weapon[2] = max_durability - 5
+                enemy.weapon[3] = max_durability
+            else:
+                max_durability = random.randint(50, 65)
+                enemy.weapon[2] = max_durability - 10
+                enemy.weapon[3] = max_durability
+        # 2. Противник опытный
+        elif self.enemy_generate_info[1] == "2. Противник опытный":
+            if self.enemy_generate_info[2] == "4. Богат":
+                max_durability = random.randint(90, 95)
+                enemy.weapon[2] = max_durability - 2
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "3. В достатке":
+                max_durability = random.randint(85, 90)
+                enemy.weapon[2] = max_durability - 3
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                max_durability = random.randint(80, 85)
+                enemy.weapon[2] = max_durability - 5
+                enemy.weapon[3] = max_durability
+            else:
+                max_durability = random.randint(70, 80)
+                enemy.weapon[2] = max_durability - 10
+                enemy.weapon[3] = max_durability
+        # 3. Противник ветеран
+        elif self.enemy_generate_info[1] == "3. Противник ветеран":
+            if self.enemy_generate_info[2] == "4. Богат":
+                max_durability = random.randint(85, 90)
+                enemy.weapon[2] = max_durability - 2
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "3. В достатке":
+                max_durability = random.randint(80, 85)
+                enemy.weapon[2] = max_durability - 3
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                max_durability = random.randint(75, 80)
+                enemy.weapon[2] = max_durability - 5
+                enemy.weapon[3] = max_durability
+            else:
+                max_durability = random.randint(65, 75)
+                enemy.weapon[2] = max_durability - 10
+                enemy.weapon[3] = max_durability
+        # 4. Противник мастер
+        elif self.enemy_generate_info[1] == "4. Противник мастер":
+            if self.enemy_generate_info[2] == "4. Богат":
+                max_durability = random.randint(80, 85)
+                enemy.weapon[2] = max_durability - 2
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "3. В достатке":
+                max_durability = random.randint(75, 80)
+                enemy.weapon[2] = max_durability - 3
+                enemy.weapon[3] = max_durability
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                max_durability = random.randint(70, 75)
+                enemy.weapon[2] = max_durability - 5
+                enemy.weapon[3] = max_durability
+            else:
+                max_durability = random.randint(65, 70)
+                enemy.weapon[2] = max_durability - 10
+                enemy.weapon[3] = max_durability
+
+
+    def generate_initiative(self, enemy):
+        initiative = random.randint(1, 20)
+        initiative += (int(enemy.skills[6].split(": ")[1]) - 10) // 2
+        return initiative
+
+    def generate_mobility_debuff(self, enemy):
+        debuff = 0
+        debuff += fullArmorDict.get(enemy.armor[0])[8]
+        debuff += fullHelmetDict.get(enemy.helmet[0])[8]
+        agil_buff = 0
+        agility = int(enemy.skills[2].split(": ")[1])
+        if agility <= 5:
+            agil_buff = 2
+        elif 6 <= agility <= 9:
+            agil_buff = 1
+        elif 15 <= agility <= 18:
+            agil_buff = -1
+        elif 19 <= agility <= 20:
+            agil_buff = -2
+        debuff += agil_buff
+        return debuff
+
+    def generate_grenades(self):
+        # 1. Противник новичок
+        if self.enemy_generate_info[1] == "1. Противник новичок":
+            if self.enemy_generate_info[2] in ["3. В достатке", "4. Богат"]:
+                if self.enemy_generate_info[2] == "4. Богат":
+                    return new_random.choice(grenadeTier1Plus)
+                else:
+                    return new_random.choice(grenadeTier1 + grenadeTier1Plus)
+            else:
+                return new_random.choice(grenadeTier1)
+        # 2. Противник опытный
+        if self.enemy_generate_info[1] == "2. Противник опытный":
+            if self.enemy_generate_info[2] in ["3. В достатке", "4. Богат"]:
+                return new_random.choice(grenadeTier2)
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                return new_random.choice(grenadeTier1Plus + grenadeTier2)
+            else:
+                return new_random.choice(grenadeTier1Plus)
+        # 3. Противник ветеран
+        if self.enemy_generate_info[1] == "3. Противник ветеран":
+            if self.enemy_generate_info[2] in ["3. В достатке", "4. Богат"]:
+                return new_random.choice(grenadeTier3)
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                return new_random.choice(grenadeTier2Plus + grenadeTier3)
+            else:
+                return new_random.choice(grenadeTier2Plus + grenadeTier2)
+        # 4. Противник мастер
+        if self.enemy_generate_info[1] == "4. Противник мастер":
+            if self.enemy_generate_info[2] == "4. Богат":
+                if new_random.randint(5, 100) == 100:
+                    return new_random.choice(grenadeTierS)
+                else:
+                    return new_random.choice(grenadeTier3Plus + grenadeTier3)
+            elif self.enemy_generate_info[2] == "3. В достатке":
+                return new_random.choice(grenadeTier3)
+            elif self.enemy_generate_info[2] == "2. Средний класс":
+                return new_random.choice(grenadeTier3 + grenadeTier2Plus)
+            else:
+                return new_random.choice(grenadeTier2Plus)
+
+        return new_random.choice(grenadeTier1)
+
+    def generate_skills(self):
+        # 1. Противник новичок
+        if self.enemy_generate_info[1] == "1. Противник новичок":
+            enemy_skills = ["Стрелковые навыки: 5", "Сила: 8", "Ловкость: 8", "Воля: 8", "Ближний бой: 5",
+                            "Внимательность: 8", "Тактика: 5", "Скрытность: 5", "Медицина: 5"]
+            for i in range(15):
+                chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                while int(enemy_skills[chosen_index].split(":")[1]) >= 12:
+                    chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                enemy_skills[chosen_index] = enemy_skills[chosen_index].split(":")[0] + ": " + str(int(enemy_skills[chosen_index].split(":")[1]) + 1)
+            return enemy_skills
+        # 2. Противник опытный
+        if self.enemy_generate_info[1] == "2. Противник опытный":
+            enemy_skills = ["Стрелковые навыки: 8", "Сила: 8", "Ловкость: 8", "Воля: 8", "Ближний бой: 5",
+                            "Внимательность: 8", "Тактика: 5", "Скрытность: 5", "Медицина: 5"]
+            for i in range(22):
+                chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                while int(enemy_skills[chosen_index].split(":")[1]) >= 14:
+                    chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                enemy_skills[chosen_index] = enemy_skills[chosen_index].split(":")[0] + ": " + str(int(enemy_skills[chosen_index].split(":")[1]) + 1)
+            return enemy_skills
+        # 3. Противник ветеран
+        if self.enemy_generate_info[1] == "3. Противник ветеран":
+            enemy_skills = ["Стрелковые навыки: 12", "Сила: 8", "Ловкость: 8", "Воля: 8", "Ближний бой: 5",
+                            "Внимательность: 8", "Тактика: 5", "Скрытность: 5", "Медицина: 5"]
+            for i in range(28):
+                chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                while int(enemy_skills[chosen_index].split(":")[1]) >= 16:
+                    chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                enemy_skills[chosen_index] = enemy_skills[chosen_index].split(":")[0] + ": " + str(int(enemy_skills[chosen_index].split(":")[1]) + 1)
+            return enemy_skills
+        # 4. Противник мастер
+        if self.enemy_generate_info[1] == "4. Противник мастер":
+            enemy_skills = ["Стрелковые навыки: 14", "Сила: 8", "Ловкость: 8", "Воля: 8", "Ближний бой: 5",
+                            "Внимательность: 8", "Тактика: 5", "Скрытность: 5", "Медицина: 5"]
+            for i in range(36):
+                chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                while int(enemy_skills[chosen_index].split(":")[1]) >= 18:
+                    chosen_index = enemy_skills.index(new_random.choice(enemy_skills))
+                enemy_skills[chosen_index] = enemy_skills[chosen_index].split(":")[0] + ": " + str(int(enemy_skills[chosen_index].split(":")[1]) + 1)
+            return enemy_skills
+
+        return ["Стрелковые навыки: 10", "Сила: 10", "Ловкость: 10", "Воля: 10", "Ближний бой: 10", "Внимательность: 10", "Тактика: 10", "Скрытность: 10", "Медицина: 10"]
 
     def generate_helmet(self, enemy):
         # Проверка на встроенный шлем
