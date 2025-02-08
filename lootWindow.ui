@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>loot_window</class>
+ <widget class="QWidget" name="loot_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>486</width>
+    <height>250</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Times New Roman</family>
+    <pointsize>10</pointsize>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Лут</string>
+  </property>
+  <widget class="QLabel" name="weaponLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>40</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Оружие: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="armorLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>60</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Броня: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="helmetLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>80</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Шлем: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="ragLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>100</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Разгрузка: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="headphonesLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>120</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Наушники: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="backpackLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>140</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Рюкзак: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="bulletLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>220</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Патроны: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="nameLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>10</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Имя Фамилия, Одиночка</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="foodLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>160</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Еда: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="medLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>180</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Медицина: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="miscLabel">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>200</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <pointsize>10</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Прочее: </string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

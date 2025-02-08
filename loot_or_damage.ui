@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>loot_or_damage</class>
+ <widget class="QWidget" name="loot_or_damage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>350</width>
+    <height>72</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Облутать или пострелять</string>
+  </property>
+  <widget class="QPushButton" name="get_damage_btn">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Получить
+урон</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="inventory_btn">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>10</y>
+     <width>81</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Times New Roman</family>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Инвентарь</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,6 +1,8 @@
 import random
 
 from enemy import Enemy
+from enemy_loot import EnemyLoot
+
 new_random = random
 
 # Оружие: Название, прочность, максимальная прочность, бронебойность, урон, очередь, точность, дальность, эргономика, тип патронов, количество патронов в магазине, размер магазина, штраф очереди
@@ -407,6 +409,7 @@ def generate_name():
 
 class EnemyGenerator:
     def __init__(self):
+        self.new_enemy = None
         self.fullWeaponDict = fullWeaponDict
         self.fullArmorDict = fullArmorDict
         self.fullHelmetDict = fullHelmetDict
@@ -414,22 +417,22 @@ class EnemyGenerator:
         self.last_id = 0
 
     def generate_enemy(self, enemy_generate_info):
-        new_enemy = Enemy(self.last_id)
+        self.new_enemy = Enemy(self.last_id)
         self.last_id += 1
         self.enemy_generate_info = enemy_generate_info
 
-        new_enemy.enemy_name = [generate_name(), self.enemy_generate_info[0]]
-        new_enemy.weapon = self.generate_weapon()
-        new_enemy.armor = [self.generate_armor(), "Целая"]
-        new_enemy.helmet = [self.generate_helmet(new_enemy), "Целая"]
-        new_enemy.skills = self.generate_skills()
-        new_enemy.grenade = self.generate_grenades()
-        new_enemy.mobility_debuff = self.generate_mobility_debuff(new_enemy)
-        new_enemy.initiative = self.generate_initiative(new_enemy)
-        new_enemy.enemy_loot = self.generate_enemy_loot()
-        self.generate_durability(new_enemy)
+        self.new_enemy.enemy_name = [generate_name(), self.enemy_generate_info[0]]
+        self.new_enemy.weapon = self.generate_weapon()
+        self.new_enemy.armor = [self.generate_armor(), "Целая"]
+        self.new_enemy.helmet = [self.generate_helmet(self.new_enemy), "Целая"]
+        self.new_enemy.skills = self.generate_skills()
+        self.new_enemy.grenade = self.generate_grenades()
+        self.new_enemy.mobility_debuff = self.generate_mobility_debuff(self.new_enemy)
+        self.new_enemy.initiative = self.generate_initiative(self.new_enemy)
+        self.new_enemy.enemy_loot = self.generate_enemy_loot()
+        self.generate_durability(self.new_enemy)
 
-        return new_enemy
+        return self.new_enemy
 
     def generate_durability(self, enemy):
         # Броня
@@ -778,4 +781,5 @@ class EnemyGenerator:
         return weaponDict.get(new_random.choice(weaponsTier1))
 
     def generate_enemy_loot(self):
-        pass
+        current_enemy_loot = EnemyLoot(self.new_enemy, self.enemy_generate_info)
+        return current_enemy_loot

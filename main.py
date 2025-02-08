@@ -107,11 +107,11 @@ class MainWindow(QMainWindow):
         self.ui.inventory_btn.clicked.connect(self.open_inventory)
         self.ui.get_damage_btn.clicked.connect(self.get_damage)
 
-        self.ui.initiativeTracker.itemDoubleClicked.connect(self.open_enemy_loot)
+        self.ui.initiativeTracker.itemDoubleClicked.connect(self.open_chose_dialog)
 
     def get_damage(self):
         try:
-            dlg = CreateDamageDialog(self.get_current_enemy())
+            dlg = CreateDamageDialog(self.get_current_enemy(), self)
             dlg.show()
         except Exception:
             traceback.print_exc()
@@ -127,7 +127,8 @@ class MainWindow(QMainWindow):
             return enemy_list[-1]
 
     def open_inventory(self):
-        pass
+        dlg = LootDialog(self, self.get_current_enemy())
+        dlg.show()
 
     def reload(self):
         enemy = self.get_current_enemy()
@@ -151,6 +152,7 @@ class MainWindow(QMainWindow):
                                         " с базовой сложностью = " + str(base_difficulty) +
                                         "\nЗначение броска метания: " + str(random.randint(1, 20)) +
                                         "\nДобавьте дальность к сложности.\nДобавьте 3/8 к сложности, если он сидит/лежит.\nДобавьте сложность препятствия 1/3/5, если она есть")
+            self.refresh_current_enemy()
         except Exception:
             traceback.print_exc()
 
@@ -169,10 +171,13 @@ class MainWindow(QMainWindow):
         dlg.random_enemy_creation()
         dlg.get_generated_enemy_info()
 
-
-    def open_enemy_loot(self, item):
-        # Заглушка, нужно открывать другое окно с лутом персонажа
-        QMessageBox.information(self, "Info", item.text())
+    def open_chose_dialog(self, item):
+        enemy_id = int(item.text().split("#")[1])
+        for enemy in enemy_list:
+            if enemy.enemy_id == enemy_id:
+                dlg = ChooseDialog(enemy, self)
+                dlg.show()
+                break
 
     def open_add_enemy_dialog(self):
         dlg = CreateEnemyDialog(self)
@@ -206,9 +211,43 @@ class MainWindow(QMainWindow):
         except Exception:
             traceback.print_exc()
 
-class CreateDamageDialog(QWidget):
-    def __init__(self, enemy):
+    def refresh_current_enemy(self):
+        enemy = self.get_current_enemy()
+        self.ui.initiativeTracker.takeItem(0)
+        self.ui.initiativeTracker.insertItem(0, enemy_coder.code_enemy(enemy))
+
+
+class ChooseDialog(QWidget):
+    def __init__(self, enemy, main):
         super().__init__()
+        self.main = main
+        self.enemy = enemy
+        self.ui = uic.loadUi('loot_or_damage.ui', self)
+
+        self.ui.inventory_btn.clicked.connect(self.open_inventory)
+        self.ui.get_damage_btn.clicked.connect(self.get_damage)
+
+    def get_damage(self):
+        try:
+            dlg = CreateDamageDialog(self.enemy, self.main)
+            dlg.show()
+        except Exception:
+            traceback.print_exc()
+        self.close()
+
+    def open_inventory(self):
+        try:
+            dlg = LootDialog(self.main, self.enemy)
+            dlg.show()
+        except Exception:
+            traceback.print_exc()
+        self.close()
+
+
+class CreateDamageDialog(QWidget):
+    def __init__(self, enemy, main):
+        super().__init__()
+        self.main = main
         self.enemy = enemy
         self.damage_parameters = []
         self.ui = uic.loadUi('createDamageDialog.ui', self)
@@ -245,6 +284,8 @@ class CreateDamageDialog(QWidget):
 
         dmg_counter = damage_counter.DamageCounter()
         dmg_counter.calculate_damage(self.enemy, self.damage_parameters, chosen_radio_button)
+
+        self.main.refresh_current_enemy()
         self.close()
 
 
@@ -346,7 +387,27 @@ class CreateShootingDialog(QWidget):
                 QMessageBox.information(self, "Выстрел", message)
         except Exception:
             traceback.print_exc()
+        self.main_window.refresh_current_enemy()
         self.close()
+
+class LootDialog(QWidget):
+    def __init__(self, main_window, enemy):
+        super().__init__()
+        self.ui = uic.loadUi('lootWindow.ui', self)
+        self.main_window = main_window
+        self.enemy = enemy
+
+        self.ui.weaponLabel.setText("Оружие: " + enemy.weapon[0] + " " + str(enemy.weapon[2]) + "/" + str(enemy.weapon[3]))
+        self.ui.nameLabel.setText(", ".join(enemy.enemy_name))
+        self.ui.armorLabel.setText("Броня: " + ", ".join(enemy.armor))
+        self.ui.helmetLabel.setText("Шлем: " + ", ".join(enemy.helmet))
+        self.ui.ragLabel.setText("Разгрузка: " + enemy.enemy_loot.rag)
+        self.ui.headphonesLabel.setText("Наушники: " + enemy.enemy_loot.headphones)
+        self.ui.backpackLabel.setText("Рюкзак: " + enemy.enemy_loot.backpack)
+        self.ui.foodLabel.setText("Еда: " + ", ".join(enemy.enemy_loot.loot[2]))
+        self.ui.medLabel.setText("Медикаменты: " + ", ".join(enemy.enemy_loot.loot[1]))
+        self.ui.miscLabel.setText("Прочее: " + enemy.enemy_loot.loot[-1] + ", " + enemy.enemy_loot.loot[-2])
+        self.ui.bulletLabel.setText("Патроны: " + str(enemy.enemy_loot.loot[0]))
 
 app = QApplication([])
 window = MainWindow()
