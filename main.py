@@ -406,8 +406,9 @@ class LootDialog(QWidget):
         self.ui.backpackLabel.setText("Рюкзак: " + enemy.enemy_loot.backpack)
         self.ui.foodLabel.setText("Еда: " + ", ".join(enemy.enemy_loot.loot[2]))
         self.ui.medLabel.setText("Медикаменты: " + ", ".join(enemy.enemy_loot.loot[1]))
-        self.ui.miscLabel.setText("Прочее: " + enemy.enemy_loot.loot[-1] + ", " + enemy.enemy_loot.loot[-2])
+        self.ui.miscLabel.setText("Прочее: " + enemy.enemy_loot.loot[3] + ", " + enemy.enemy_loot.loot[4])
         self.ui.bulletLabel.setText("Патроны: " + str(enemy.enemy_loot.loot[0]))
+        self.ui.moneyLabel.setText("Деньги: " + str(enemy.enemy_loot.loot[5]))
 
 app = QApplication([])
 window = MainWindow()

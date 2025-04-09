@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>486</width>
-    <height>250</height>
+    <height>270</height>
    </rect>
   </property>
   <property name="font">
@@ -203,6 +203,19 @@
    </property>
    <property name="text">
     <string>Прочее: </string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="moneyLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>240</y>
+     <width>450</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Деньги: </string>
    </property>
   </widget>
  </widget>
